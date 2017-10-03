@@ -15,7 +15,7 @@ test('success to reset bayes', t => {
 
   bayes.resetTraining()
 
-  t.is(0, bayes.tags.length)
-  t.is(0, Object.keys(bayes.wordsByTag).length)
-  t.is(0, Object.keys(bayes.textCountByTag).length)
+  t.deepEqual([], bayes.tags)
+  t.deepEqual({}, bayes.wordsByTag)
+  t.deepEqual({}, bayes.textCountByTag)
 })
