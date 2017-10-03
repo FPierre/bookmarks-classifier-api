@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node index.js",
     "extract": "node extractor/extractor.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "test": "ava"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,5 +19,8 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0"
   }
 }
