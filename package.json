@@ -1,0 +1,22 @@
+{
+  "name": "bookmarks-classifier-api",
+  "version": "0.0.1",
+  "description": "",
+  "author": "FPierre <pflauder@gmail.com>",
+  "scripts": {
+    "dev": "node index.js",
+    "extract": "node extractor/extractor.js",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.1",
+    "franc-min": "^3.1.1",
+    "stopwords-json": "^1.2.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  }
+}
