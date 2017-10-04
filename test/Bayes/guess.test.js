@@ -21,8 +21,6 @@ test('success to train the model', t => {
 
   bayes.guess('JavaScript')
 
-  t.deepEqual(bayes.scores, { javascript: 1, performance: 0 })
-
   t.true(bayes.scores.javascript >= 0.8)
 })
 
@@ -32,12 +30,4 @@ test('success to train the model', t => {
   bayes.guess('JavaScript is a great programming language')
 
   t.true(bayes.scores.javascript >= 0.8)
-})
-
-test('success to train the model', t => {
-  const { bayes } = t.context
-
-  bayes.guess('test for guess')
-
-  t.deepEqual(bayes.scores, { javascript: 0.5, performance: 0.5 })
 })
