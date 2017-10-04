@@ -1,7 +1,6 @@
 import test from 'ava'
 
 const bayes = require('../../bayes')
-const { sanitizeTexts } = require('../../utils')
 
 test('success to train the model', t => {
   const sanitizedTrainers = [
