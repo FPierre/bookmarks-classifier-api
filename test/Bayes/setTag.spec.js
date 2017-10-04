@@ -12,8 +12,8 @@ test('success to add non existant tag in bayes tags', t => {
 
   bayes.setTag(tag)
 
-  t.is(1, bayes.tags.length)
-  t.deepEqual([tag], bayes.tags)
+  t.is(bayes.tags.length, 1)
+  t.deepEqual(bayes.tags, [tag])
 })
 
 test('fails to add existant tag in bayes tags', t => {
@@ -23,6 +23,6 @@ test('fails to add existant tag in bayes tags', t => {
   bayes.setTag(tag)
   bayes.setTag(tag)
 
-  t.is(1, bayes.tags.length)
-  t.deepEqual([tag], bayes.tags)
+  t.is(bayes.tags.length, 1)
+  t.deepEqual(bayes.tags, [tag])
 })

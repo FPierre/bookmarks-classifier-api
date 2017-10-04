@@ -8,36 +8,32 @@ test.beforeEach(t => {
 
 test('success to lower case text', t => {
   const { bayes } = t.context
-  const text = 'TEXT TO LOWER CASE'
 
-  const tokenized = bayes.tokenize(text)
+  const tokenized = bayes.tokenize('TEXT TO LOWER CASE')
 
-  t.deepEqual(['text', 'to', 'lower', 'case'], tokenized)
+  t.deepEqual(tokenized, ['text', 'to', 'lower', 'case'])
 })
 
 test('success to sanitize text', t => {
   const { bayes } = t.context
-  const text = ' text | to &&sanitize'
 
-  const tokenized = bayes.tokenize(text)
+  const tokenized = bayes.tokenize('text | to &&sanitize')
 
-  t.deepEqual(['text', 'to', 'sanitize'], tokenized)
+  t.deepEqual(tokenized, ['text', 'to', 'sanitize'])
 })
 
 test('success to trim text', t => {
   const { bayes } = t.context
-  const text = ' text to trim  '
 
-  const tokenized = bayes.tokenize(text)
+  const tokenized = bayes.tokenize(' text to trim  ')
 
-  t.deepEqual(['text', 'to', 'trim'], tokenized)
+  t.deepEqual(tokenized, ['text', 'to', 'trim'])
 })
 
 test('success to tokenize text', t => {
   const { bayes } = t.context
-  const text = "  TEXT -to- t'okenize .  "
 
-  const tokenized = bayes.tokenize(text)
+  const tokenized = bayes.tokenize("  TEXT -to- t'okenize .  ")
 
-  t.deepEqual(['text', 'to', 't', 'okenize'], tokenized)
+  t.deepEqual(tokenized, ['text', 'to', 't', 'okenize'])
 })
