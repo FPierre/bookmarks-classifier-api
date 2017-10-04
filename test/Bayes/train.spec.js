@@ -3,7 +3,7 @@ import test from 'ava'
 const bayes = require('../../bayes')
 const { sanitizeTexts } = require('../../utils')
 
-test('success to trains the model', t => {
+test('success to train the model', t => {
   const sanitizedTrainers = [
     { tag: 'javascript', lang: 'en', text: 'Article title JavaScript' },
     { tag: 'javascript', lang: 'en', text: 'Title talking JavaScript' },
