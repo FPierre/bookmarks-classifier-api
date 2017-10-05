@@ -1,14 +1,14 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from 'express'
+import bodyParser from 'body-parser'
 
-const bayes = require('./bayes')
-const { sanitizeTexts } = require('./utils')
-const rubyTrainer = require('./trainers/ruby-trainer')
-const javaScriptTrainer = require('./trainers/javascript-trainer')
-const linuxTrainer = require('./trainers/linux-trainer')
-const performanceTrainer = require('./trainers/performance-trainer')
+import bayes from './src/bayes'
+const { sanitizeTexts } from './src/utils'
+import rubyTrainer from './src/trainers/ruby-trainer'
+import javaScriptTrainer from './src/trainers/javascript-trainer'
+import linuxTrainer from './src/trainers/linux-trainer'
+import performanceTrainer from './src/trainers/performance-trainer'
 
-const pendingTexts = require('./extractor/tagged-bookmarks.json')
+import pendingTexts from './src/extractor/tagged-bookmarks.json'
 
 const trainers = [
   ...rubyTrainer,

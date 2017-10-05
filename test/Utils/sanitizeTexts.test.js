@@ -1,6 +1,6 @@
 import { test } from 'ava'
 
-const { sanitizeTexts } = require('../../utils')
+import { sanitizeTexts } from '../../src/utils'
 
 test('sucess to remove stops words', t => {
   const sanitized = sanitizeTexts([{ text: 'Article talking about JavaScript', lang: 'en' }])

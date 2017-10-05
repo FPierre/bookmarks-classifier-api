@@ -1,6 +1,6 @@
 import test from 'ava'
 
-const bayes = require('../../bayes')
+import bayes from '../../src/bayes'
 
 test('success to sum the number of words', t => {
   bayes.setWordsCount('jellyfish')

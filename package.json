@@ -4,9 +4,9 @@
   "description": "",
   "author": "FPierre <pflauder@gmail.com>",
   "scripts": {
-    "dev": "node index.js",
-    "extractor": "node extractor/extractor-cli.js",
-    "lint": "eslint --ext .js,.vue src",
+    "dev": "node index.mjs",
+    "extractor": "node src/extractor/extractor-cli.mjs",
+    "lint": "eslint --ext .js,.mjs src",
     "test": "ava"
   },
   "dependencies": {
@@ -16,11 +16,10 @@
     "franc-min": "^3.1.1",
     "stopwords-json": "^1.2.0"
   },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
   "devDependencies": {
     "ava": "^0.22.0"
+  },
+  "engines": {
+    "node": ">= 8.5.0"
   }
 }

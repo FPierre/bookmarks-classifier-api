@@ -1,6 +1,6 @@
 import { test } from 'ava'
 
-const Extractor = require('../../extractor/extractor.js')
+import Extractor from '../../src/extractor/extractor.js'
 
 test('', t => {
   t.pass()

@@ -1,6 +1,6 @@
 import test from 'ava'
 
-const bayes = require('../../bayes')
+import bayes from '../../src/bayes'
 
 test('success to lower case text', t => {
   const tokenized = bayes.tokenize('TEXT TO LOWER CASE')

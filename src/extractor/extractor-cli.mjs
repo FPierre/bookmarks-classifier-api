@@ -1,5 +1,5 @@
-const tags = require('../tags')
-const Extractor = require('./extractor')
+import tags from '../tags'
+import Extractor from './extractor'
 
 const extractor = new Extractor(tags)
 

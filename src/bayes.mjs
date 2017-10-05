@@ -1,4 +1,4 @@
-class Bayes {
+exports default class Bayes {
   constructor () {
     this.tags = []
     this.wordsByTag = {}
@@ -178,5 +178,3 @@ class Bayes {
     return text.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ')
   }
 }
-
-module.exports = new Bayes()

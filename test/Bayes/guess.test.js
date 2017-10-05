@@ -1,6 +1,6 @@
 import test from 'ava'
 
-const bayesInstance = require('../../bayes')
+import bayesInstance from '../../src/bayes'
 
 test.beforeEach(t => {
   const sanitizedTrainers = [

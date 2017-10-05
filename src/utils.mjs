@@ -1,4 +1,4 @@
-const stopWords = require('stopwords-json')
+import stopWords from 'stopwords-json'
 
 exports.sanitizeTexts = trainers => {
   return trainers.map(trainer => {

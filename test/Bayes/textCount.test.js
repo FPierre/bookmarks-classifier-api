@@ -1,6 +1,6 @@
 import test from 'ava'
 
-const bayes = require('../../bayes')
+import bayes from '../../src/bayes'
 
 test('success to return 0 for non-existent tag', t => {
   const count = bayes.textCount('javascript')
