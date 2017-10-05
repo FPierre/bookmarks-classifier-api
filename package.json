@@ -5,7 +5,7 @@
   "author": "FPierre <pflauder@gmail.com>",
   "scripts": {
     "dev": "node index.js",
-    "extract": "node extractor/extractor.js",
+    "extractor": "node extractor/extractor-cli.js",
     "lint": "eslint --ext .js,.vue src",
     "test": "ava"
   },
