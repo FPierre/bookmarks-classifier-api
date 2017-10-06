@@ -1,6 +1,6 @@
 const stopWords = require('stopwords-json')
 
-module.sanitizeTexts = trainers => {
+exports.sanitizeTexts = trainers => {
   return trainers.map(trainer => {
     trainer.text = removeStopWords(trainer.text, stopWords[trainer.lang])
 

@@ -1,6 +1,6 @@
 const test = require('ava')
 
-const bayes = require('../../src/Bayes')
+const Bayes = require('../../src/Bayes')
 
 test('success to train the model', t => {
   const sanitizedTrainers = [

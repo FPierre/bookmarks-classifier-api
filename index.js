@@ -28,7 +28,7 @@ const bayes = new Bayes()
 // for (const trainer of sanitizedTrainers) {
 //   bayes.train(trainer.text, trainer.tag)
 // }
-/*
+
 app.get('/pending', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET')
@@ -43,7 +43,7 @@ app.post('/guess', (req, res) => {
   console.log(bayes.guess(req.body.text))
   res.json({ scores: bayes.guess(req.body.text) })
 })
-*/
+
 // app.get('/trainers', (req, res) => {
 //   res.setHeader('Access-Control-Allow-Origin', '*')
 //   res.setHeader('Access-Control-Allow-Methods', 'GET')
@@ -52,4 +52,4 @@ app.post('/guess', (req, res) => {
 //   // res.json({ trainers:  })
 // })
 
-//app.listen(3003)
+app.listen(3003)

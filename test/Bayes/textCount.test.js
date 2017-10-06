@@ -2,7 +2,7 @@ const test = require('ava')
 
 const Bayes = require('../../src/Bayes')
 
-t.beforeEach(t => {
+test.beforeEach(t => {
   t.context.bayes = new Bayes()
 })
 
