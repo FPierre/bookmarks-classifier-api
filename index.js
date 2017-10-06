@@ -3,19 +3,8 @@ const bodyParser = require('body-parser')
 
 const Bayes = require('./src/Bayes')
 const sanitizeTexts = require('./src/utils')
-const rubyTrainer = require('./src/trainers/ruby-trainer')
-const javaScriptTrainer = require('./src/trainers/javascript-trainer')
-const linuxTrainer = require('./src/trainers/linux-trainer')
-const performanceTrainer = require('./src/trainers/performance-trainer')
-
 const pendingTexts = require('./src/extractor/tagged-bookmarks.json')
-
-const trainers = [
-  ...rubyTrainer,
-  ...javaScriptTrainer,
-  ...linuxTrainer,
-  ...performanceTrainer
-]
+const trainers = require('./src/trainers')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
