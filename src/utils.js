@@ -1,6 +1,6 @@
-import stopWords from 'stopwords-json'
+const stopWords = require('stopwords-json')
 
-export default function (trainers) {
+module.sanitizeTexts = trainers => {
   return trainers.map(trainer => {
     trainer.text = removeStopWords(trainer.text, stopWords[trainer.lang])
 

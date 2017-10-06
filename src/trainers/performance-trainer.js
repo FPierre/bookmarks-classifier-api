@@ -1,4 +1,4 @@
-exports default [
+module.exports = [
   { tag: 'performance', lang: 'en', text: 'Webpack bits: Getting the most out of the CommonsChunkPlugin()' },
   { tag: 'performance', lang: 'en', text: 'Make bundler crazy fast' },
   { tag: 'performance', lang: 'en', text: 'Reducing the size of your Webpack bundle' },

@@ -1,6 +1,6 @@
-import test from 'ava'
+const test = require('ava')
 
-import Bayes from '../../src/Bayes'
+const Bayes = require('../../src/Bayes')
 
 t.beforeEach(t => {
   t.context.bayes = new Bayes()

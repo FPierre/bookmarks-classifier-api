@@ -1,8 +1,8 @@
-import fs from 'fs'
-import cheerio from 'cheerio'
-import franc from 'franc-min'
+const fs = require('fs')
+const cheerio = require('cheerio')
+const franc = require('franc-min')
 
-export default class {
+module.exports = class Extractor {
   constructor (tags) {
     this.tags = tags
     this.htmlFilePath = './src/extractor/raindrop.io.html'

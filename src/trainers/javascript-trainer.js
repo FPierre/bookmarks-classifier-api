@@ -1,4 +1,4 @@
-exports default [
+module.exports = [
   { tag: 'javascript', lang: 'en', text: 'Chart.js | Open source HTML5 Charts for your website' },
   { tag: 'javascript', lang: 'en', text: 'Does Google execute JavaScript?' },
   { tag: 'javascript', lang: 'en', text: 'Electron is flash for the desktop' },

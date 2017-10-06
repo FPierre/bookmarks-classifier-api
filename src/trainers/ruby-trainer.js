@@ -1,4 +1,4 @@
-exports default [
+module.exports = [
   { tag: 'ruby', lang: 'en', text: 'Please, Ruby devs, join() your paths' },
   { tag: 'ruby', lang: 'en', text: 'Augmenting A Ruby on Rails App with Vue.js' },
   { tag: 'ruby', lang: 'en', text: 'Rails isn’t trendy anymore. Hooray for Rails!' },

@@ -1,6 +1,6 @@
-import test from 'ava'
+const test = require('ava')
 
-import Bayes from '../../src/Bayes'
+const Bayes = require('../../src/Bayes')
 
 test('success to reset bayes', t => {
   const bayes = new Bayes()

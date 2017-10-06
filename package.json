@@ -5,9 +5,9 @@
   "author": "FPierre <pflauder@gmail.com>",
   "scripts": {
     "dev": "node --experimental-modules index.mjs",
-    "extractor": "node --experimental-modules src/extractor/extractor-cli.mjs",
-    "lint": "eslint --ext .js,.mjs src",
-    "test": "ava test/**/*.test.mjs"
+    "extractor": "node src/extractor/extractor-cli.js",
+    "lint": "eslint --ext .js src test index.js",
+    "test": "ava"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
