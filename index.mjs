@@ -1,8 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
-import bayes from './src/bayes'
-const { sanitizeTexts } from './src/utils'
+import Bayes from './src/Bayes'
+import sanitizeTexts from './src/utils'
 import rubyTrainer from './src/trainers/ruby-trainer'
 import javaScriptTrainer from './src/trainers/javascript-trainer'
 import linuxTrainer from './src/trainers/linux-trainer'
@@ -21,12 +21,14 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+const bayes = new Bayes()
+
 // const sanitizedTrainers = sanitizeTexts(trainers)
 
 // for (const trainer of sanitizedTrainers) {
 //   bayes.train(trainer.text, trainer.tag)
 // }
-
+/*
 app.get('/pending', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET')
@@ -41,7 +43,7 @@ app.post('/guess', (req, res) => {
   console.log(bayes.guess(req.body.text))
   res.json({ scores: bayes.guess(req.body.text) })
 })
-
+*/
 // app.get('/trainers', (req, res) => {
 //   res.setHeader('Access-Control-Allow-Origin', '*')
 //   res.setHeader('Access-Control-Allow-Methods', 'GET')
@@ -50,4 +52,4 @@ app.post('/guess', (req, res) => {
 //   // res.json({ trainers:  })
 // })
 
-app.listen(3003)
+//app.listen(3003)

@@ -1,5 +1,5 @@
 import tags from '../tags'
-import Extractor from './extractor'
+import Extractor from './Extractor'
 
 const extractor = new Extractor(tags)
 

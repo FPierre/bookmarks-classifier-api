@@ -1,8 +1,10 @@
 import test from 'ava'
 
-import bayes from '../../src/bayes'
+import Bayes from '../../src/Bayes'
 
 test('success to reset bayes', t => {
+  const bayes = new Bayes()
+
   bayes.tags = ['JavaScript']
   bayes.wordsByTag = { 'Javascript': 1 }
   bayes.textCountByTag = { 'JavaScript': 1 }

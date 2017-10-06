@@ -2,7 +2,7 @@ import fs from 'fs'
 import cheerio from 'cheerio'
 import franc from 'franc-min'
 
-exports default class Extractor {
+export default class {
   constructor (tags) {
     this.tags = tags
     this.htmlFilePath = './src/extractor/raindrop.io.html'

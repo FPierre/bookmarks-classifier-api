@@ -1,8 +1,10 @@
 import test from 'ava'
 
-import bayes from '../../src/bayes'
+import Bayes from '../../src/Bayes'
 
 test('success to sum the number of words', t => {
+  const bayes = new Bayes()
+
   bayes.setWordsCount('jellyfish')
   bayes.setWordsCount('jellyfish')
 

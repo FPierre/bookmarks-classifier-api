@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import bayes from '../../src/bayes'
+import Bayes from '../../src/Bayes'
 
 test('success to train the model', t => {
   const sanitizedTrainers = [
@@ -8,6 +8,8 @@ test('success to train the model', t => {
     { tag: 'javascript', lang: 'en', text: 'Title talking JavaScript' },
     { tag: 'performance', lang: 'en', text: 'News speaks performance' }
   ]
+
+  const bayes = new Bayes()
 
   for (const trainer of sanitizedTrainers) {
     bayes.train(trainer.text, trainer.tag)

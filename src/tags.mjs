@@ -1,4 +1,4 @@
-exports default [
+export default [
   'API',
   'Blockchain',
   'Docker',

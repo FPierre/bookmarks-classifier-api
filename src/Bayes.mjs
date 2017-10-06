@@ -1,4 +1,4 @@
-exports default class Bayes {
+export default class {
   constructor () {
     this.tags = []
     this.wordsByTag = {}

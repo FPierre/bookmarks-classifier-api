@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import bayesInstance from '../../src/bayes'
+import Bayes from '../../src/Bayes'
 
 test.beforeEach(t => {
   const sanitizedTrainers = [
@@ -8,6 +8,8 @@ test.beforeEach(t => {
     { tag: 'javascript', lang: 'en', text: 'Title talking JavaScript' },
     { tag: 'performance', lang: 'en', text: 'News speaks performance' }
   ]
+
+  const bayesInstance = new Bayes()
 
   for (const trainer of sanitizedTrainers) {
     bayesInstance.train(trainer.text, trainer.tag)

@@ -4,10 +4,10 @@
   "description": "",
   "author": "FPierre <pflauder@gmail.com>",
   "scripts": {
-    "dev": "node index.mjs",
-    "extractor": "node src/extractor/extractor-cli.mjs",
+    "dev": "node --experimental-modules index.mjs",
+    "extractor": "node --experimental-modules src/extractor/extractor-cli.mjs",
     "lint": "eslint --ext .js,.mjs src",
-    "test": "ava"
+    "test": "ava test/**/*.test.mjs"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

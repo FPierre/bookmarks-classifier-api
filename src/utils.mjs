@@ -1,6 +1,6 @@
 import stopWords from 'stopwords-json'
 
-exports.sanitizeTexts = trainers => {
+export default function (trainers) {
   return trainers.map(trainer => {
     trainer.text = removeStopWords(trainer.text, stopWords[trainer.lang])
 
