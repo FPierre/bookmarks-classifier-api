@@ -10,7 +10,7 @@ module.exports = [
   { tag: 'javascript', lang: 'en', text: 'Things you should know about JS events' },
   { tag: 'javascript', lang: 'en', text: 'Webpack: A Detailed Introduction' },
   { tag: 'javascript', lang: 'en', text: 'Working with fonts with Webpack' },
-  { tag: 'javascript', lang: 'eng', text: 'Exploring EcmaScript Decorators - Google Developers' },
-  { tag: 'javascript', lang: 'eng', text: 'Introduction to JavaScript Async Functions - Promises simplified' },
-  { tag: 'javascript', lang: 'eng', text: 'Progressive Web Apps with Webpack' }
+  { tag: 'javascript', lang: 'en', text: 'Exploring EcmaScript Decorators - Google Developers' },
+  { tag: 'javascript', lang: 'en', text: 'Introduction to JavaScript Async Functions - Promises simplified' },
+  { tag: 'javascript', lang: 'en', text: 'Progressive Web Apps with Webpack' }
 ]

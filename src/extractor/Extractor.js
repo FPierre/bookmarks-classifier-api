@@ -23,7 +23,7 @@ module.exports = class Extractor {
           }
 
           const text = $(elem).text()
-          const lang = franc(text) === 'fra' ? 'fra' : 'eng'
+          const lang = franc(text) === 'fr' ? 'fr' : 'en'
 
           this.taggedBookmarks.push({ tag, lang, text })
         }
