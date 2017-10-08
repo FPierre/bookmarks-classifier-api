@@ -22,7 +22,7 @@ app.get('/pending', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  res.json({ texts: pendingTexts })
+  res.json({ pendingTexts })
 })
 
 app.post('/guess', (req, res) => {
