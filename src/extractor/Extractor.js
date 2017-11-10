@@ -1,22 +1,50 @@
-const fs = require('fs')
 const cheerio = require('cheerio')
 const franc = require('franc-min')
+const fse = require('fs-extra')
+
+const throwMissing = param => {
+  throw new TypeError(`Missing parameter ${param}`)
+}
 
 module.exports = class Extractor {
-  constructor (tags) {
+  constructor (tags = throwMissing('tags'), htmlFilePath = throwMissing('htmlFilePath')) {
+    if (!tags.length) {
+      throw new TypeError('Tags parameter is empty')
+    }
+
     this.tags = tags
-    this.htmlFilePath = './src/extractor/raindrop.io.html'
-    this.jsonFilePath = './src/extractor/tagged-bookmarks.json'
+    this.htmlFilePath = htmlFilePath
     this.taggedBookmarks = []
   }
 
-  process () {
-    const $ = cheerio.load(this.readHTML())
+  async writeJSON (jsonFilePath) {
+    const taggedBookmarks = await this._process()
+    this.taggedBookmarks = taggedBookmarks
 
-    $('dt a').each((i, elem) => {
-      const bookmarkTags = $(elem).attr('tags').split(',')
+    await fse.outputJson(jsonFilePath, this.taggedBookmarks)
+  }
 
-      if (bookmarkTags.length) {
+  async _readBookmarksFile () {
+    try {
+      return await fse.readFile(this.htmlFilePath)
+    } catch (e) {
+      console.log(e.stack)
+      process.exit(1)
+    }
+  }
+
+  async _process () {
+    const $ = cheerio.load(await this._readBookmarksFile())
+    let promises = []
+
+    return new Promise((resolve, reject) => {
+      $('dt a').each((i, elem) => {
+        const bookmarkTags = $(elem).attr('tags').split(',')
+
+        if (!bookmarkTags.length) {
+          reject({ message: 'bookmarkTags is empty' })
+        }
+
         for (const tag of bookmarkTags) {
           if (!this.tags.includes(tag)) {
             continue
@@ -25,30 +53,11 @@ module.exports = class Extractor {
           const text = $(elem).text()
           const lang = franc(text) === 'fr' ? 'fr' : 'en'
 
-          this.taggedBookmarks.push({ tag, lang, text })
+          promises.push({ tag, lang, text })
         }
-      }
-    })
-  }
+      })
 
-  readHTML () {
-    try {
-      return fs.readFileSync(this.htmlFilePath, 'utf8')
-    } catch (e) {
-      console.log(e.stack)
-      process.exit(1)
-    }
-  }
-
-  writeJSON () {
-    const bookmarks = JSON.stringify(this.taggedBookmarks, undefined, 2)
-
-    fs.writeFile(this.jsonFilePath, bookmarks, err => {
-      if (err) {
-        return console.log(err)
-      }
-
-      console.log('The file was saved!')
+      resolve(promises)
     })
   }
 }

@@ -1,12 +1,13 @@
-const express = require('express')
 const bodyParser = require('body-parser')
+const express = require('express')
 
-const Bayes = require('./src/Bayes')
 const { sanitizeTexts } = require('./src/utils')
-const pendingTexts = require('./src/extractor/tagged-bookmarks.json')
 const { trainers } = require('./src/trainers')
+const Bayes = require('./src/Bayes')
+const pendingTexts = require('./src/extractor/tagged-bookmarks.json')
 
 const app = express()
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -14,8 +15,8 @@ const bayes = new Bayes()
 
 const sanitizedTrainers = sanitizeTexts(trainers)
 
-for (const trainer of sanitizedTrainers) {
-  bayes.train(trainer.text, trainer.tag)
+for (const { text, tag } of sanitizedTrainers) {
+  bayes.train(text, tag)
 }
 
 app.get('/pending', (req, res) => {
