@@ -1,3 +1,4 @@
+.nyc_output/
 node_modules/
 src/extractor/raindrop.io.html
 src/extractor/tagged-bookmarks.json
