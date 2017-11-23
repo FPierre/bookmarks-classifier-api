@@ -1,4 +1,4 @@
-const { tokenize } = require('utils')
+const { tokenize } = require('./utils')
 
 module.exports = class Bayes {
   constructor () {
