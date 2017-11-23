@@ -10,16 +10,16 @@ module.exports = class Bayes {
   }
 
   train (text, tag) {
-    this.setTag(tag)
+    this.storeTag(tag)
 
     const words = tokenize(text)
 
     for (const word of words) {
-      this.setWordByTag(word, tag)
-      this.setWordsCount(word)
+      this.storeWordByTag(word, tag)
+      this.storeWordsCount(word)
     }
 
-    this.setTextCountByTag(tag)
+    this.storeTextCountByTag(tag)
   }
 
   guess (text) {
@@ -34,23 +34,20 @@ module.exports = class Bayes {
       textsCount[tag] = this.textCountByTag[tag]
       textsInverseCount[tag] = this.textInverseCount(tag)
       totalDocCount += textsCount[tag]
-    }
 
-    for (const tag of this.tags) {
       let logSum = 0
 
       tagProbability[tag] = textsCount[tag] / totalDocCount
 
       for (const word of words) {
         const _stemTotalCount = this.stemTotalCount(word)
-        let wordicity
+        let wordicity = null
 
         if (_stemTotalCount === 0) {
           continue
         } else {
           let tmp = this.wordsByTag[tag][word] || 0
           const wordProbability = tmp / textsCount[tag]
-
           const wordInverseProbability = this.wordInverseTagCount(word, tag) / textsInverseCount[tag]
 
           wordicity = wordProbability / (wordProbability + wordInverseProbability)
@@ -71,7 +68,6 @@ module.exports = class Bayes {
 
     this.scores = scores
 
-    // return this.winner()
     return this.scores
   }
 
@@ -95,31 +91,28 @@ module.exports = class Bayes {
     return { tag: bestTag, score: bestScore }
   }
 
-  setTag (tag) {
+  storeTag (tag) {
     if (this.tags.indexOf(tag) === -1) {
       this.tags.push(tag)
     }
   }
 
-  // Number of times a word was seen for a given tag
-  setWordByTag (word, tag) {
-    let wordsByTag = this.wordsByTag
-
-    if (!wordsByTag[tag]) {
-      wordsByTag[tag] = {}
+  // Number of times a word is present for a given tag
+  storeWordByTag (word, tag) {
+    // If tag is not already present in root object
+    if (!this.wordsByTag[tag]) {
+      this.wordsByTag[tag] = {}
     }
 
-    if (!wordsByTag[tag][word]) {
-      wordsByTag[tag][word] = 0
+    // If word is not already present in tag object
+    if (!this.wordsByTag[tag][word]) {
+      this.wordsByTag[tag][word] = 0
     }
 
-    let count = wordsByTag[tag][word]
-    wordsByTag[tag][word] = ++count
-
-    this.wordsByTag = wordsByTag
+    this.wordsByTag[tag][word] = ++this.wordsByTag[tag][word]
   }
 
-  setWordsCount (word) {
+  storeWordsCount (word) {
     if (!this.wordsCount[word]) {
       this.wordsCount[word] = 0
     }
@@ -127,7 +120,7 @@ module.exports = class Bayes {
     this.wordsCount[word]++
   }
 
-  setTextCountByTag (tag) {
+  storeTextCountByTag (tag) {
     let textCountByTag = this.textCountByTag
 
     if (!textCountByTag[tag]) {
@@ -137,38 +130,28 @@ module.exports = class Bayes {
     this.textCountByTag[tag] = ++textCountByTag[tag]
   }
 
-  textCount (tag) {
-    return this.textCountByTag[tag] || 0
-  }
-
   textInverseCount (tag) {
-    let total = 0
-
-    for (const _tag of this.tags) {
+    return this.tags.reduce((memo, _tag) => {
       if (_tag === tag) {
-        continue
+        return memo
       }
 
-      total += parseInt(this.textCount(tag))
-    }
-
-    return total
+      return memo += parseInt(this.textCount(tag))
+    }, 0)
   }
 
   wordInverseTagCount (word, tag) {
-    let total = 0
-
-    for (const _tag of this.tags) {
+    return this.tags.reduce((memo, _tag) => {
       if (_tag === tag) {
-        continue
+        return memo
       }
 
-      let tmp = this.wordsByTag[_tag][word] || 0
+      return memo += this.wordsByTag[_tag][word] || 0
+    }, 0)
+  }
 
-      total += tmp
-    }
-
-    return total
+  textCount (tag) {
+    return this.textCountByTag[tag] || 0
   }
 
   stemTotalCount (word) {
