@@ -1,5 +1,4 @@
 const cheerio = require('cheerio')
-const fse = require('fs-extra')
 const path = require('path')
 const test = require('ava')
 

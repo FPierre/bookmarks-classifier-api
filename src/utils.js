@@ -1,5 +1,7 @@
 const stopWords = require('stopwords-json')
 
+exports.tokenize = text => text.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ')
+
 exports.sanitizeTexts = trainers => {
   return trainers.map(trainer => {
     trainer.text = removeStopWords(trainer.text, stopWords[trainer.lang])
@@ -24,10 +26,11 @@ function removeStopWords (text, stopWordsByLang) {
       if (word === stopWord) {
         // Build the regex
         let regexStr = '^\\s*' + stopWord + '\\s*$' // Only word
-        regexStr += '|^\\s*' + stopWord + '\\s+'    // First word
-        regexStr += '|\\s+' + stopWord + '\\s*$'    // Last word
-        regexStr += '|\\s+' + stopWord + '\\s+'     // Word somewhere in the middle
-        regex = new RegExp(regexStr, 'ig')
+        regexStr += '|^\\s*' + stopWord + '\\s+' // First word
+        regexStr += '|\\s+' + stopWord + '\\s*$' // Last word
+        regexStr += '|\\s+' + stopWord + '\\s+' // Word somewhere in the middle
+
+        const regex = new RegExp(regexStr, 'ig')
 
         // Remove the word from the keywords
         text = text.replace(regex, ' ')

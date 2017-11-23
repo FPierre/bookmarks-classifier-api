@@ -42,7 +42,7 @@ module.exports = class Extractor {
         const bookmarkTags = $(elem).attr('tags').split(',')
 
         if (!bookmarkTags.length) {
-          reject({ message: 'bookmarkTags is empty' })
+          reject(new Error('bookmarkTags is empty'))
         }
 
         for (const tag of bookmarkTags) {

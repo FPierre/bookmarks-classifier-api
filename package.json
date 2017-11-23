@@ -7,7 +7,7 @@
     "dev": "node index.js",
     "extractor": "node src/extractor/extractor-cli.js",
     "lint": "eslint --ext .js src test index.js",
-    "test": "ava"
+    "test": "nyc ava test"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,9 +18,32 @@
     "stopwords-json": "^1.2.0"
   },
   "devDependencies": {
-    "ava": "^0.23.0"
+    "ava": "^0.23.0",
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nyc": "^11.3.0"
   },
   "engines": {
     "node": ">= 8.5.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "statements": 95,
+    "branches": 95,
+    "functions": 95,
+    "lines": 95,
+    "include": [
+      "index.js",
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true
   }
 }

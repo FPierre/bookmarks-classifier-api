@@ -1,3 +1,5 @@
+const { tokenize } = require('utils')
+
 module.exports = class Bayes {
   constructor () {
     this.tags = []
@@ -10,7 +12,7 @@ module.exports = class Bayes {
   train (text, tag) {
     this.setTag(tag)
 
-    const words = this.tokenize(text)
+    const words = tokenize(text)
 
     for (const word of words) {
       this.setWordByTag(word, tag)
@@ -21,7 +23,7 @@ module.exports = class Bayes {
   }
 
   guess (text) {
-    const words = this.tokenize(text)
+    const words = tokenize(text)
     const textsCount = {}
     const textsInverseCount = {}
     const scores = {}
@@ -42,7 +44,6 @@ module.exports = class Bayes {
       for (const word of words) {
         const _stemTotalCount = this.stemTotalCount(word)
         let wordicity
-
 
         if (_stemTotalCount === 0) {
           continue
@@ -118,7 +119,7 @@ module.exports = class Bayes {
     this.wordsByTag = wordsByTag
   }
 
-  setWordsCount(word) {
+  setWordsCount (word) {
     if (!this.wordsCount[word]) {
       this.wordsCount[word] = 0
     }
@@ -172,9 +173,5 @@ module.exports = class Bayes {
 
   stemTotalCount (word) {
     return this.wordsCount[word] || 0
-  }
-
-  tokenize (text) {
-    return text.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ')
   }
 }
