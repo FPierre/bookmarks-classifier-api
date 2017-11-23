@@ -2,11 +2,11 @@ const { tokenize } = require('./utils')
 
 module.exports = class Bayes {
   constructor () {
-    this.tags = []
-    this.wordsByTag = {}
-    this.textCountByTag = {}
-    this.wordsCount = {}
     this.scores = {}
+    this.tags = []
+    this.textCountByTag = {}
+    this.wordsByTag = {}
+    this.wordsCount = {}
   }
 
   train (text, tag) {
@@ -73,8 +73,8 @@ module.exports = class Bayes {
 
   resetTraining () {
     this.tags = []
-    this.wordsByTag = {}
     this.textCountByTag = {}
+    this.wordsByTag = {}
   }
 
   winner () {
@@ -99,17 +99,15 @@ module.exports = class Bayes {
 
   // Number of times a word is present for a given tag
   storeWordByTag (word, tag) {
-    // If tag is not already present in root object
     if (!this.wordsByTag[tag]) {
       this.wordsByTag[tag] = {}
     }
 
-    // If word is not already present in tag object
     if (!this.wordsByTag[tag][word]) {
       this.wordsByTag[tag][word] = 0
     }
 
-    this.wordsByTag[tag][word] = ++this.wordsByTag[tag][word]
+    this.wordsByTag[tag][word]++
   }
 
   storeWordsCount (word) {
@@ -121,33 +119,19 @@ module.exports = class Bayes {
   }
 
   storeTextCountByTag (tag) {
-    let textCountByTag = this.textCountByTag
-
-    if (!textCountByTag[tag]) {
-      textCountByTag[tag] = 0
+    if (!this.textCountByTag[tag]) {
+      this.textCountByTag[tag] = 0
     }
 
-    this.textCountByTag[tag] = ++textCountByTag[tag]
+    this.textCountByTag[tag]++
   }
 
   textInverseCount (tag) {
-    return this.tags.reduce((memo, _tag) => {
-      if (_tag === tag) {
-        return memo
-      }
-
-      return memo += parseInt(this.textCount(tag))
-    }, 0)
+    return this.tags.reduce((memo, _tag) => _tag === tag ? memo : memo += this.textCount(tag), 0)
   }
 
   wordInverseTagCount (word, tag) {
-    return this.tags.reduce((memo, _tag) => {
-      if (_tag === tag) {
-        return memo
-      }
-
-      return memo += this.wordsByTag[_tag][word] || 0
-    }, 0)
+    return this.tags.reduce((memo, _tag) => _tag === tag ? memo : memo += this.wordsByTag[_tag][word] || 0, 0)
   }
 
   textCount (tag) {
